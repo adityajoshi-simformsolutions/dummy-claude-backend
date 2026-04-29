@@ -1,5 +1,6 @@
 import { NestFactory } from '@nestjs/core';
 import { ValidationPipe } from '@nestjs/common';
+import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { AppModule } from './app.module';
 
 async function bootstrap() {
@@ -21,8 +22,20 @@ async function bootstrap() {
     }),
   );
 
+  // Setup Swagger documentation
+  const config = new DocumentBuilder()
+    .setTitle('Todo API')
+    .setDescription('A simple Todo REST API with MongoDB')
+    .setVersion('1.0.0')
+    .addTag('todos', 'Todo management endpoints')
+    .build();
+
+  const document = SwaggerModule.createDocument(app, config);
+  SwaggerModule.setup('api/docs', app, document);
+
   const port = process.env.PORT || 3001;
   await app.listen(port);
   console.log(`🚀 Application running on: http://localhost:${port}`);
+  console.log(`📚 Swagger UI available at: http://localhost:${port}/api/docs`);
 }
 bootstrap();
