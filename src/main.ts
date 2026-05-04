@@ -27,7 +27,7 @@ async function bootstrap() {
     .setTitle('Todo API')
     .setDescription('A simple Todo REST API with MongoDB')
     .setVersion('1.0.0')
-    .addTag('todos', 'Todo management endpoints')
+    .addTag('Todos', 'Todo management endpoints')
     .build();
 
   const document = SwaggerModule.createDocument(app, config);
