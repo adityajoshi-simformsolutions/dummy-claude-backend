@@ -49,7 +49,7 @@ The following 5 endpoints are fully documented in the Swagger UI:
 #### 3. **GET /todos/:id** - Get a todo by ID
 - Retrieve a specific todo item by its ID
 - Path Parameter: `id` - The unique identifier of the todo
-- Response: 200 OK / 404 Not Found
+- Response: 200 OK / 400 Bad Request (invalid ObjectId format) / 404 Not Found
 
 #### 4. **PATCH /todos/:id** - Update a todo
 - Update an existing todo item with partial or complete data
@@ -60,7 +60,7 @@ The following 5 endpoints are fully documented in the Swagger UI:
 #### 5. **DELETE /todos/:id** - Delete a todo
 - Permanently delete a todo item (hard delete)
 - Path Parameter: `id`
-- Response: 204 No Content / 404 Not Found
+- Response: 204 No Content / 400 Bad Request (invalid ObjectId format) / 404 Not Found
 
 ### Excluded Endpoint (Intentionally)
 
@@ -83,7 +83,7 @@ The following 5 endpoints are fully documented in the Swagger UI:
 ```
 
 #### UpdateTodoDto
-All fields from CreateTodoDto are optional, allowing partial updates.
+All fields from `CreateTodoDto` are optional (via `PartialType` from `@nestjs/swagger`), allowing partial updates. Swagger inherits all `@ApiProperty` decorators from `CreateTodoDto`.
 
 ### Decorators Used
 

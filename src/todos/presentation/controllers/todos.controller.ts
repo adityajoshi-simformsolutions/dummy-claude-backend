@@ -55,6 +55,7 @@ export class TodosController {
   @ApiOperation({ summary: 'Get a todo by ID', description: 'Retrieve a specific todo item by its ID' })
   @ApiParam({ name: 'id', description: 'The unique identifier of the todo' })
   @ApiResponse({ status: 200, description: 'Todo retrieved successfully' })
+  @ApiResponse({ status: 400, description: 'Invalid todo ID format' })
   @ApiResponse({ status: 404, description: 'Todo not found' })
   @Get(':id')
   findOne(@Param('id') id: string) {
@@ -75,6 +76,7 @@ export class TodosController {
   @ApiOperation({ summary: 'Delete a todo', description: 'Permanently delete a todo item (hard delete)' })
   @ApiParam({ name: 'id', description: 'The unique identifier of the todo' })
   @ApiResponse({ status: 204, description: 'Todo deleted successfully' })
+  @ApiResponse({ status: 400, description: 'Invalid todo ID format' })
   @ApiResponse({ status: 404, description: 'Todo not found' })
   @Delete(':id')
   @HttpCode(HttpStatus.NO_CONTENT)
