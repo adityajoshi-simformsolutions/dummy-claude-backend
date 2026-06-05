@@ -9,6 +9,7 @@ import { FindOneTodoUseCase } from './application/use-cases/find-one-todo.use-ca
 import { UpdateTodoUseCase } from './application/use-cases/update-todo.use-case';
 import { RemoveTodoUseCase } from './application/use-cases/remove-todo.use-case';
 import { SoftDeleteTodoUseCase } from './application/use-cases/soft-delete-todo.use-case';
+import { RestoreTodoUseCase } from './application/use-cases/restore-todo.use-case';
 import { TodosController } from './presentation/controllers/todos.controller';
 
 @Module({
@@ -25,6 +26,7 @@ import { TodosController } from './presentation/controllers/todos.controller';
     UpdateTodoUseCase,
     RemoveTodoUseCase,
     SoftDeleteTodoUseCase,
+    RestoreTodoUseCase,
   ],
 })
 export class TodosModule {}

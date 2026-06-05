@@ -10,4 +10,5 @@ export interface ITodoRepository {
   save(todo: Todo): Promise<Todo>;
   remove(todo: Todo): Promise<void>;
   softDelete(id: string): Promise<Todo | null>;
+  restore(id: string): Promise<Todo | null>;
 }

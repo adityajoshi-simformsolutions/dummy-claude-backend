@@ -4,6 +4,9 @@
   "description": "NestJS Todo REST API with MongoDB + TypeORM",
   "scripts": {
     "build": "nest build",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:cov": "jest --coverage",
     "start": "nest start",
     "start:dev": "nest start --watch",
     "start:prod": "node dist/main"
@@ -27,7 +30,11 @@
   "devDependencies": {
     "@nestjs/cli": "^10.0.0",
     "@nestjs/schematics": "^10.0.0",
+    "@nestjs/testing": "^11.1.24",
+    "@types/jest": "^30.0.0",
     "@types/node": "^20.0.0",
+    "jest": "^30.4.2",
+    "ts-jest": "^29.4.11",
     "ts-node": "^10.9.1",
     "typescript": "^5.1.3"
   }

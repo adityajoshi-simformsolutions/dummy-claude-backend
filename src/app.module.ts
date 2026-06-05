@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { TodosModule } from './todos/todos.module';
+import { HealthModule } from './health/health.module';
 import { TodoOrmEntity } from './todos/infrastructure/orm/todo.orm-entity';
 
 @Module({
@@ -26,6 +27,7 @@ import { TodoOrmEntity } from './todos/infrastructure/orm/todo.orm-entity';
     }),
 
     TodosModule,
+    HealthModule,
   ],
 })
 export class AppModule {}

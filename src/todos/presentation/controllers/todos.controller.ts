@@ -22,6 +22,8 @@ import { RemoveTodoUseCase } from '../../application/use-cases/remove-todo.use-c
 
 import { SoftDeleteTodoUseCase } from '../../application/use-cases/soft-delete-todo.use-case';
 
+import { RestoreTodoUseCase } from '../../application/use-cases/restore-todo.use-case';
+
 @ApiTags('Todos')
 @Controller('todos')
 export class TodosController {
@@ -32,6 +34,7 @@ export class TodosController {
     private readonly updateTodoUseCase: UpdateTodoUseCase,
     private readonly removeTodoUseCase: RemoveTodoUseCase,
     private readonly softDeleteTodoUseCase: SoftDeleteTodoUseCase,
+    private readonly restoreTodoUseCase: RestoreTodoUseCase,
   ) {}
 
   @ApiOperation({ summary: 'Create a new todo', description: 'Creates a new todo item with the provided details' })
@@ -86,6 +89,19 @@ export class TodosController {
   @Patch(':id/soft-delete')
   async softDelete(@Param('id') id: string) {
     const todo = await this.softDeleteTodoUseCase.execute(id);
+    if (!todo) {
+      return { statusCode: 404, message: 'Todo not found' };
+    }
+    return todo;
+  }
+
+  @ApiOperation({ summary: 'Restore a soft-deleted todo', description: 'Restore a previously soft-deleted todo item' })
+  @ApiParam({ name: 'id', description: 'The unique identifier of the todo' })
+  @ApiResponse({ status: 200, description: 'Todo restored successfully' })
+  @ApiResponse({ status: 404, description: 'Todo not found' })
+  @Patch(':id/restore')
+  async restore(@Param('id') id: string) {
+    const todo = await this.restoreTodoUseCase.execute(id);
     if (!todo) {
       return { statusCode: 404, message: 'Todo not found' };
     }

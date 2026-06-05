@@ -49,6 +49,14 @@ export class TodoTypeOrmRepository implements ITodoRepository {
     return this.toTodo(saved);
   }
 
+  async restore(id: string): Promise<Todo | null> {
+    const entity = await this.ormRepo.findOneBy({ _id: new ObjectId(id) } as any);
+    if (!entity) return null;
+    entity.deletedAt = null;
+    const saved = await this.ormRepo.save(entity);
+    return this.toTodo(saved);
+  }
+
   async remove(todo: Todo): Promise<void> {
     const entity = this.ormRepo.create(todo as unknown as Partial<TodoOrmEntity>);
     await this.ormRepo.remove(entity);
